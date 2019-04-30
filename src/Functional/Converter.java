@@ -5,17 +5,8 @@ import java.nio.ByteBuffer;
 public class Converter
 {
 
-	/**
-	 * Supported file formats for the converter.
-	 */
 	public enum Type { WAV }
 
-	/**
-	 * Converts a sample of a given file format to a double array of the same length.
-	 * @param sample the sample of the given file format.
-	 * @param format the file format
-	 * @return the double array containing the samples
-	 */
 	public static double[] sampleToDouble(byte[] sample, Type format)
 	{
 		int nBytesRead = 0;
@@ -32,13 +23,6 @@ public class Converter
 		return doubleSamples;
 	}
 
-	/**
-	 *
-	 * Converts the double array, to sample of the given format.
-	 * @param  dbNorArray the sample of the given file format.
-	 * @param format the file format
-	 * @return the byte array containing the samples
-	 */
 	public static byte[] doubleToSample(double[] dbNorArray, Type format)
 	{
 		byte[] bytes = new byte[dbNorArray.length*4];

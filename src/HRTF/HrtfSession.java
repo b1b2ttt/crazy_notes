@@ -19,12 +19,6 @@ public class HrtfSession
 	public int azimuthIndex;
 	public int elevationIndex;
 
-	/**
-	 *
-	 * @param subject
-	 * @param azimuth
-	 * @param elevation
-	 */
 	public HrtfSession(HrtfSubject subject, double azimuth, double elevation)
 	{
 		hrir_l = Nd4j.create(1,200);
@@ -90,10 +84,6 @@ public class HrtfSession
 
 	}
 
-	/*
-	 * Finds the closest angle.
-	 * @param findElevation true for elvevation, false for azimuth
-	 */
 	private void findClosestAngleIndex(boolean findElevation)
 	{
 		final int INDEXES_PER_45_DEGREES = 8;

@@ -4,9 +4,6 @@ import org.nd4j.linalg.api.ndarray.INDArray;
 
 import Functional.CSVReader;
 
-/**
- * This is a CIPIC Database Subject.
- */
 public class CipicSubject implements HrtfSubject
 {
     private String name;
@@ -27,10 +24,6 @@ public class CipicSubject implements HrtfSubject
                                                     168.75, 174.375, 180, 185.625, 191.25, 196.875, 202.5, 208.125, 213.75,
                                                     219.375, 225, 230.625};
 
-    /**
-     *
-     * @param name
-     */
     public CipicSubject(String name)
     {
         this.name = name;
@@ -49,80 +42,54 @@ public class CipicSubject implements HrtfSubject
         onR = CSVReader.getCipic(name).readOnR();
     }
 
-    /**
-     * Gets the HrirL.
-     * @return INDArray hrirL object
-     */
     @Override
     public INDArray getHrirL()
     {
         return hrirL;
     }
 
-    /**
-     * Gets the HrirR.
-     * @return INDArray hrirR object
-     */
     @Override
     public INDArray getHrirR()
     {
         return hrirR;
     }
 
-    /**
-     * Gets the ide.
-     * @return INDArray itd object
-     */
+
     @Override
     public INDArray getItd()
     {
         return itd;
     }
 
-    /**
-     * Gets the name of the Subject
-     * @return the subject's name
-     */
+
     @Override
     public String getName()
     {
         return name;
     }
 
-    /**
-     * Gets the onL
-     * @return INDArray onL object
-     */
+
     @Override
     public INDArray getOnL()
     {
         return onL;
     }
 
-    /**
-     * Gets the onR
-     * @return INDArray onR object
-     */
+
     @Override
     public INDArray getOnR()
     {
         return onR;
     }
 
-    /**
-     * Gets the possible elevations that the current HRTF supports.
-     * @return double[] containing the angles supported
-     */
+ 
     @Override
     public double[] getPossibleElevations()
     {
         return elevations;
     }
 
-    /**
-     * Gets the possible azimuths that the current HRTF supports.
-     * @return double[] containing the angles supported
-     */
+
     @Override
     public double[] getPossibleAzimuths()
     {

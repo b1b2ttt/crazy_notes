@@ -37,12 +37,6 @@ public class D3Sound
 	public AudioFormat audioFormat;
 	public DataLine.Info info;
 
-	/**
-	 * Creates a 3D sound which can be played using the step() method.
-	 * @param bufferSize
-	 * @param soundFile
-	 * @param session
-	 */
 	public D3Sound(int bufferSize, File soundFile, HrtfSession session)
 	{
 		this.session = session;

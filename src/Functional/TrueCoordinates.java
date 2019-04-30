@@ -1,9 +1,5 @@
 package Functional;
 
-/**
- * Grouping for a shooters locations.
- * Made everything public for easier readability
- */
 public class TrueCoordinates
 {
 	public int x;
@@ -12,12 +8,6 @@ public class TrueCoordinates
 	public double azimuth;
 	public double elevation;
 	private double origin;
-
-	/**
-	 * @param x
-	 * @param y
-	 * @param z
-	 */
 	public TrueCoordinates(int x, int y, int z)
 	{
 		this.x = x;
@@ -39,10 +29,6 @@ public class TrueCoordinates
 		azimuth = azimuth - origin;
 	}
 
-	/**
-	 * Gets the adjust azimuth that would be used with the HRTF Session.
-	 * @return
-	 */
 	public double getAdjustedAzimuth()
 	{
 		if(azimuth > 90)
@@ -59,10 +45,6 @@ public class TrueCoordinates
 		}
 	}
 
-	/**
-	 * Gets the adjust azimuth that would be used with the HRTF Session.
-	 * @return
-	 */
 	public double getAdjustedElevation()
 	{
 		if(azimuth < -90

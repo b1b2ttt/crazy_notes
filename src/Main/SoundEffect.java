@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import HRTF.*;
+
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.DataLine;
@@ -23,6 +23,7 @@ import javax.swing.JPanel;
 import Functional.D3Sound;
 import Functional.TrueCoordinates;
 import HRTF.HrtfSession;
+
 public class SoundEffect {
 	static String filePath = "";
 	static String converterPath = "";
@@ -46,6 +47,7 @@ public class SoundEffect {
         frame.setUndecorated(true);
         frame.setVisible(true); 
 	}
+	
 	private static void placeComponents(JFrame frame, JPanel panel) {
 		 panel.setLayout(null);
 		 JLabel titleLabel = new JLabel("Sound Process",JLabel.CENTER);
@@ -61,9 +63,31 @@ public class SoundEffect {
 	     panel.add(fileButton);
 	     JLabel fileLabel = new JLabel("",JLabel.CENTER);
 	     fileLabel.setBounds(0,150,700,40);
-	     Font fFont = new Font("微软雅黑",Font.PLAIN,30); 
+	     Font fFont = new Font("微软雅黑",Font.PLAIN,24); 
 	     fileLabel.setFont(fFont);
 		 panel.add(fileLabel);
+		 JButton leftButton = new JButton("Left");
+			leftButton.setBounds(100,210,100,100);
+		    leftButton.setFont(fButton);
+		    leftButton.setBackground(Color.yellow);
+		    panel.add(leftButton);
+		    JButton rightButton = new JButton("Right");
+		    rightButton.setBounds(500,210,100,100);
+		    rightButton.setFont(fButton);
+		    rightButton.setBackground(Color.yellow);
+		    panel.add(rightButton);
+		    leftButton.setEnabled(false);
+		    rightButton.setEnabled(false);
+		    leftButton.addActionListener(new ActionListener(){
+		    	public void actionPerformed(ActionEvent e) {
+		    		PlayEffected.isLeft = true;
+		    	}
+		    });
+		    rightButton.addActionListener(new ActionListener(){
+		    	public void actionPerformed(ActionEvent e) {
+		    		PlayEffected.isLeft = false;
+		    	}
+		    });
 	     fileButton.addActionListener(new ActionListener(){
 	     public void actionPerformed(ActionEvent e) {
 	    	 boolean isChoose = fileButton.getText().startsWith("C");
@@ -76,48 +100,15 @@ public class SoundEffect {
      			filePath = file.getAbsolutePath();
      			fileButton.setText("Start Process");
 	    	 } else {
-	    		 String command = "timidity " + filePath + " -Ow -o out.wav";
-	    		 try {
-					Process p = Runtime.getRuntime().exec(command);
-					p.waitFor();
-					if (p.exitValue() != 0) {
-						System.err.println("Error when converting file format");
-						frame.dispose();
-					}
-				} catch (IOException | InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-	    		 try {
-	    			HrtfSession sessions = new HrtfSession(Hrtf.getCipicSubject("58"), 0, 0);
-	    		    D3Sound sound = new D3Sound(44100*4, new File("out.wav"), sessions);
-	    		    int x = -5;
-	    		    int y = 0;
-    		    	do{
-    		    		if(y >= 0 && y >= 5) {
-    		    			y -= 1;
-    		    		} else {
-    		    			y += 1;
-    		    		}
-    		    		if(x >= -5 && x >= 5) {
-    		    			x -= 1;
-    		    		} else {
-    		    			x += 1;
-    		    		}
-    		    		//System.out.println(x);
-    		    		TrueCoordinates shotCoords = new TrueCoordinates(x, y, 0);
-	    		    	shotCoords.setOrigin(new TrueCoordinates(0, 0, 0).azimuth);
-	    		    	sound.changeSoundDirection(shotCoords.getAdjustedAzimuth(), shotCoords.getAdjustedElevation());
-    		    	} while(sound.step());	    		    		    		    	    	       
-         
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-	    		 File file = new File("out.wav");
-	    		 file.delete();
-	    		 fileLabel.setText("");
-	    		 fileButton.setText("Choose a File"); 
+	    		 fileButton.setEnabled(false);
+	    		 leftButton.setEnabled(true);
+			 	 rightButton.setEnabled(true);
+	    		 
+	    		 
+	    		 PlayEffected d = new PlayEffected(leftButton, rightButton, fileButton, fileLabel);
+	    		 d.start();
+	    		 
+	    		 
 	    	 }
 	        }
 	     });

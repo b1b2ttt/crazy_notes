@@ -4,20 +4,12 @@ public class Convolution
 {
 	public double[] kernel;
 
-	/**
-	 * Constructs a convolution object.
-	 * @param kernel the filter
-	 */
+
 	public Convolution(double[] kernel)
 	{
 		this.kernel = kernel;
 	}
 
-	/**
-	 * Convolves two 1 dimensional arrays in a linear fashion.
-	 * @param sample the sample to filter
-	 * @return the convoluted data
-	 */
 	public double[] linearConv(double[] sample)
 	{
 		double[] convoluted = new double[sample.length + kernel.length - 1];
@@ -44,31 +36,19 @@ public class Convolution
 		return convoluted;
 	}
 
-	/**
-	 * Convolves two 1 dimensional arrays in a linear fashion.
-	 * @param sample the sample to filter
-	 * @param kernel the filter
-	 * @return the convoluted data
-	 */
 	public double[] linearConv(double[] sample, double[] kernel)
 	{
 		setKernel(kernel);
 		return linearConv(sample);
 	}
 
-	/**
-	 * Sets the kernel.
-	 * @param kernel the filter
-	 */
+	
 	public void setKernel(double[] kernel)
 	{
 		this.kernel = kernel;
 	}
 
-	/**
-	 * Gets the kernel.
-	 * @return the filter
-	 */
+	
 	public double[] getKernel()
 	{
 		return kernel;

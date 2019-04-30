@@ -34,21 +34,17 @@ import javax.sound.midi.ShortMessage;
 import javax.sound.midi.Soundbank;
 import javax.sound.midi.Synthesizer;
 import javax.sound.midi.Track;
-import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSlider;
 import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
@@ -56,8 +52,6 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableColumn;
@@ -98,12 +92,8 @@ public class PianoFunc extends JPanel implements ControlContext {
         setLayout(new BorderLayout());
 
         JPanel p = new JPanel();
-        //p.setBackground(Color.YELLOW);
         p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
-        //EmptyBorder eb = new EmptyBorder(5,5,5,5);
         BevelBorder bb = new BevelBorder(BevelBorder.LOWERED);
-        //CompoundBorder cb = new CompoundBorder(eb,bb);
-       //p.setBorder(new CompoundBorder(cb,eb));
         JPanel topBlank = new JPanel(new BorderLayout());
         topBlank.setBorder(new EmptyBorder(10,20,10,5));    
         topBlank.setBackground(pianoBrown);
@@ -111,9 +101,7 @@ public class PianoFunc extends JPanel implements ControlContext {
         p.add(piano = new Piano());
         
         p.add(controls = new Controls());
-        //p.add(new InstrumentsTable());
-        add(p);
-    	//设置在屏幕的位置  
+        add(p); 
     	
   
        
@@ -168,15 +156,7 @@ public class PianoFunc extends JPanel implements ControlContext {
 
 
 
-    /**
-     * given 120 bpm:
-     *   (120 bpm) / (60 seconds per minute) = 2 beats per second
-     *   2 / 1000 beats per millisecond
-     *   (2 * resolution) ticks per second
-     *   (2 * resolution)/1000 ticks per millisecond, or 
-     *      (resolution / 500) ticks per millisecond
-     *   ticks = milliseconds * resolution / 500
-     */
+   
     public void createShortEvent(int type, int num) {
         ShortMessage message = new ShortMessage();
         try {
@@ -189,9 +169,6 @@ public class PianoFunc extends JPanel implements ControlContext {
     }
 
 
-    /**
-     * Black and white keys or notes on the piano.
-     */
     class Key extends Rectangle {
         int noteState = OFF;
         int kNum;
@@ -219,14 +196,10 @@ public class PianoFunc extends JPanel implements ControlContext {
         public void setNoteState(int state) {
             noteState = state;
         }
-    } // End class Key
+    }
 
 
 
-    /**
-     * Piano renders black & white keys and plays the notes for a MIDI 
-     * channel.  
-     */
     class Piano extends JPanel implements MouseListener {
 
         Vector blackKeys = new Vector();
@@ -341,13 +314,9 @@ public class PianoFunc extends JPanel implements ControlContext {
                 }
             }
         }
-    } // End class Piano
+    } 
 
 
-
-    /**
-     * Stores MidiChannel information.
-     */
     class ChannelData {
 
         MidiChannel channel;
