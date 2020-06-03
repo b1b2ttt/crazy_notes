@@ -1,15 +1,15 @@
 # crazy_notes
-#Introduction :tw-1f3b9:
+#Introduction
 ###### This project is going to develop an application which could combine 3d sound effects with sounds created by musical instruments to provide a feeling of performing in different kinds of environments.
 
-#Diagram :tw-1f3b6:
+#Diagram 
 
 ###### - First, users need to perform the sounds and our application equipped with the function of record will record it.
 ###### - Next, the application inputs the sounds and operates them by applying hrtf (head related transform function). 
 ###### - We are going to use java to satisfy our 3d sound requirements.
 ![](https://github.com/b1b2ttt/images/blob/master/crazy_note_01.png?raw=true)
 
-# User Interface :tw-1f31f:
+# User Interface 
 ###### Considering the convenience and easy to use. The user interface should be concentrated on, since it is the only part which interacts with users. It should be designed carefully.
 ###### In the home page, users can choose different sound source: piano and drum sets. If a user chooses piano, he will see keyboards of the piano. Then he can press the keys to make a song just like on a real piano, and the song would be recorded by the application in order to do the 3D decoration. After the procession of the song is complete, a horn button is appearing. That means the great song with 3D sound effect is ready to play. during enjoying the song, although the user does not change his position or phone’s position, he should still have an illusion that this song is changing directions continuously.
 ![](https://github.com/b1b2ttt/images/blob/master/crazy_note_02.png?raw=true)   
@@ -18,7 +18,7 @@
 
 ![](https://github.com/b1b2ttt/images/blob/master/crazy_note_05.png?raw=true)
 
-# Environment :tw-1f4bb:
+# Environment 
 ###### - Windows10
 ###### - Eclipse
 # Other dependencies :tw-1f4ce:
